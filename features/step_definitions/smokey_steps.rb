@@ -2,6 +2,7 @@ require 'plek'
 require 'mysql2'
 require 'stomp'
 require 'mongo'
+require "cgi"
 
 Given /^the "(.*)" application has booted$/ do |app_name|
   platform = ENV['TARGET_PLATFORM'] || "preview"
@@ -40,7 +41,7 @@ When /^I visit "(.*)" (\d+) times$/ do |path, count|
 end
 
 When /^I search for "(.*)"$/ do |term|
-  @response = get_request("#{@host}/search?q=#{term}", cache_bust: @bypass_varnish)
+  @response = get_request("#{@host}/search?q=#{CGI::escape(term)}", cache_bust: @bypass_varnish)
 end
 
 Then /^I should be able to visit:$/ do |table|
@@ -67,6 +68,24 @@ end
 
 Then /^I should receive no results/ do
   @response.body.include?("find any results for").should == true
+end
+
+Then /^I (should|should not) see "(.*)" in the top (\d+) results/ do |negation, target, hits|
+  negation = negation == "should not"
+  hits = hits.to_i
+  doc = Nokogiri::HTML(@response)
+  result = doc.css(".results .results-list .search-result-title a").to_a.index do |item|
+    item.attr("href") == target
+  end
+  if negation
+    assert(result.nil? || result >= hits)
+  else
+    assert(result.is_a?(Integer) && result <= (hits+1))
+  end
+end
+
+Then /^I should not see "(.*)" in the top (\d+) results/ do |target, hits|
+
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
