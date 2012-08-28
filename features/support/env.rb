@@ -1,4 +1,5 @@
 require 'webrat'
+require 'WAAT'
 
 Webrat.configure do |config|
   config.mode = :mechanize
