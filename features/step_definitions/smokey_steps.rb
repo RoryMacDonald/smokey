@@ -70,7 +70,7 @@ Then /^I should receive no results/ do
   @response.body.include?("find any results for").should == true
 end
 
-Then /^I (should|should not) see "(.*)" in the top (\d+) results/ do |negation, target, hits|
+Then /^I (should|should not) see "(.*)" in the top (\d+) result[s]?/ do |negation, target, hits|
   negation = negation == "should not"
   hits = hits.to_i
   doc = Nokogiri::HTML(@response)
@@ -82,10 +82,6 @@ Then /^I (should|should not) see "(.*)" in the top (\d+) results/ do |negation, 
   else
     assert(result.is_a?(Integer) && result <= (hits+1))
   end
-end
-
-Then /^I should not see "(.*)" in the top (\d+) results/ do |target, hits|
-
 end
 
 Then /^I should get a (\d+) status code$/ do |status|
