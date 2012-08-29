@@ -4,13 +4,17 @@ require 'cucumber/rake/task'
 Cucumber::Rake::Task.new("test:localnetwork",
     "Run all tests including those which depend on being on " +
     "the same local network as other production infrastructure") do |t|
-  t.cucumber_opts = %w{--format progress -t ~@pending}
+  t.cucumber_opts = %w{--format progress -t ~@pending -t ~@search}
 end
 
 Cucumber::Rake::Task.new("test:notlocalnetwork",
   "Run all tests except those which must be on " +
   "the same local network as other production infrastructure") do |t|
-  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@local-network}
+  t.cucumber_opts = %w{--format pretty -t ~@pending -t ~@local-network -t ~@search}
+end
+
+Cucumber::Rake::Task.new("test:search", "Run search query test suite") do |t|
+  t.cucumber_opts = %w{--format pretty -t @search}
 end
 
 Cucumber::Rake::Task.new(:remote, "Excludes nagios tests") do |t|
