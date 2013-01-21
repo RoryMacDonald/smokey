@@ -81,5 +81,5 @@ def single_http_request(url)
 end
 
 def plek
-  Plek.new(target_platform)
+  Plek.new()
 end
