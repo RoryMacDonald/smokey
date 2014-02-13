@@ -24,6 +24,10 @@ def application_base_url(app_name)
   when 'licencefinder' then "https://licencefinder.#{app_domain}/licence-finder"
   when 'licensing' then "https://licensify.#{app_domain}/apply-for-a-licence"
   when 'limelight' then "https://www.#{app_domain}/performance/licensing"
+  when 'mirror0provider0' then "https://www-origin.mirror0.provider0.production.govuk.service.gov.uk/"
+  when 'mirror1provider0' then "https://www-origin.mirror1.provider0.production.govuk.service.gov.uk/"
+  when 'mirror0provider1' then "https://www-origin.mirror0.provider1.production.govuk.service.gov.uk/"
+  when 'mirror1provider1' then "https://www-origin.mirror1.provider1.production.govuk.service.gov.uk/"
   when 'panopticon' then "https://panopticon.#{app_domain}/"
   when 'public-contentapi' then "https://www.#{app_domain}/api/tags.json" # this should be changed to a Content API 'homepage' when we have one
   when 'publisher' then "https://publisher.#{app_domain}/admin"
