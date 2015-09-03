@@ -22,7 +22,6 @@ def application_base_url(app_name)
   when 'private-frontend' then "https://private-frontend.#{app_domain}/"
   when 'imminence' then "https://imminence.#{app_domain}/"
   when 'licencefinder' then "https://licencefinder.#{app_domain}/licence-finder"
-  when 'licensing' then "https://licensify.#{app_domain}/apply-for-a-licence"
   when 'panopticon' then "https://panopticon.#{app_domain}/"
   when 'public-contentapi' then "https://www.#{app_domain}/api/tags.json" # this should be changed to a Content API 'homepage' when we have one
   when 'publisher' then "https://publisher.#{app_domain}/admin"

@@ -31,11 +31,6 @@ Feature: Frontend
     Then I should see "Pension Credit"
 
   @normal
-  Scenario: check licences load
-    When I visit "/busking-licence"
-    Then I should see "Busking licence"
-
-  @normal
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"

@@ -8,7 +8,6 @@ Feature: Licence Finder
       | Path                                                              |
       | /licence-finder                                                   |
       | /licence-finder/sectors                                           |
-      | /licence-finder/sectors?sectors=&q=pub                            |
       | /licence-finder/activities?sectors=59                             |
       | /licence-finder/location?sectors=59&activities=149                |
       | /licence-finder/licences?activities=149&location=wales&sectors=59 |
