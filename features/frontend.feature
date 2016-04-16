@@ -50,6 +50,12 @@ Feature: Frontend
      And I should see "Busking licence"
 
   @normal
+  Scenario: check Northern Ireland postcodes work with licences
+    When I try to post to "/food-premises-approval-northern-ireland" with "postcode=BT24+7BZ"
+    Then I should get a 200 status code
+     And I should see "Newry, Mourne and Down"
+
+  @normal
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
