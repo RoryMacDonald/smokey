@@ -4,7 +4,7 @@ gem "plek"
 gem "rake"
 gem "rspec"
 gem "minitest"
-gem "cucumber"
+gem "cucumber", '2.3.3'
 gem "capybara"
 gem "capybara-mechanize"
 
