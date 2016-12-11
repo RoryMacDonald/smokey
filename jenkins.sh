@@ -2,8 +2,7 @@
 
 set -x
 
-# Clean up untracked files. This is mainly to remove `smokey-rest-client.log`,
-# otherwise it builds up between jobs.
+# Clean up untracked files.
 git clean -fdx
 
 if [ -z $MYTASK ]; then
@@ -19,4 +18,4 @@ if [ ! -f .ruby-version ]; then
 fi
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment --quiet
-RESTCLIENT_LOG="log/smokey-rest-client.log" govuk_setenv default bundle exec rake $MYTASK
+RESTCLIENT_LOG=stdout govuk_setenv default bundle exec rake $MYTASK

@@ -116,6 +116,7 @@ class FeatureTestRun(object):
 
 
     def write_pretty_log(self, logfile):
+        # fixme: remove
         pplog = codecs.open(logfile, "a", "utf-8-sig")
         pplog.write(self.log)
         pplog.close()
