@@ -36,10 +36,6 @@ When /^I visit "(.*)" without cachebust$/ do |path_or_url|
   visit path_or_url
 end
 
-When /^I try to visit "(.*)"$/ do |path_or_url|
-  visit_path path_or_url
-end
-
 When /^I visit "(.*)" without following redirects$/ do |path|
   @response = single_http_request("#{@host}#{path}")
 end

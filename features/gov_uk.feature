@@ -17,5 +17,5 @@ Feature: Core GOV.UK behaviour
 
   @normal
   Scenario: partially upper case slugs do not redirect
-    When I try to visit "/government/publicatIONS"
+    When I visit "/government/publicatIONS"
     Then I should get a 404 status code
