@@ -8,21 +8,6 @@ Feature: Whitehall
     And I force a varnish cache miss
     Then I should see the departments and policies section on the homepage
 
-  @notintegration
-  Scenario: There should be no authentication for Whitehall
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-    Then I should be able to view policies
-    And I should be able to view announcements
-    And I should be able to view publications
-    Then I should be able to visit:
-      | Path                      |
-      | /government/topics        |
-      | /government/consultations |
-      | /government/ministers     |
-      | /government/organisations |
-      | /government/world         |
-
   @normal
   Scenario: Searching for an existing consultation on whitehall via elastic search
     Given I am testing through the full stack
