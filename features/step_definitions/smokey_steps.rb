@@ -55,30 +55,9 @@ When /^I visit a non-existent page$/ do
   @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
 end
 
-When /^I request "(.*)" from Bouncer directly$/ do |url|
-  parsed_url = URI.parse(url)
-  bouncer_url = "#{@host}#{parsed_url.path}"
-  bouncer_url += "?#{parsed_url.query}" if parsed_url.query
-  request_host = parsed_url.host
-
-  @response = try_get_request(bouncer_url, host_header: request_host)
-end
-
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     visit_path row['Path']
-  end
-end
-
-Then /^I should be able to search the tariff and see matching results$/ do
-  %w(animal mineral vegetable).each do |query|
-    visit_path "/trade-tariff/sections"
-
-    fill_in("search_t", with: query)
-    click_button("Search")
-
-    expected_search_results_text = %r(Search results for (?:‘|')#{query}(?:’|'))
-    expect(page.body).to have_content(expected_search_results_text)
   end
 end
 
@@ -137,43 +116,4 @@ end
 
 When /^I try to post to "(.*)" with "(.*)"$/ do |path, payload|
   @response = post_request "#{@host}#{path}", :payload => "#{payload}"
-end
-
-Then /^the logo should link to the homepage$/ do
-  logo = Nokogiri::HTML.parse(page.body).at_css('#logo')
-  logo.attributes['href'].value.should == ENV['EXPECTED_GOVUK_WEBSITE_ROOT']
-end
-
-Then /^I should see Publisher's publication index$/ do
-  page.should have_selector("#publication-list-container")
-end
-
-Then /^I should be able to navigate the topic hierarchy$/ do
-  topics = Nokogiri::HTML.parse(page.body).css("nav.topics li a")
-  random_path_selection(anchor_tags: topics).each do |path|
-    visit_path path
-
-    subtopics = Nokogiri::HTML.parse(page.body).css("nav.topics li a")
-    random_path_selection(anchor_tags: subtopics).each do |path|
-      visit_path path
-    end
-  end
-end
-
-Then /^I should be able to navigate the browse pages$/ do
-  categories = Nokogiri::HTML.parse(page.body).css(".browse-panes ul li a")
-  random_path_selection(anchor_tags: categories).each do |path|
-    visit_path path
-
-    subcategories = Nokogiri::HTML.parse(page.body).css(".pane-inner ul li a")
-    random_path_selection(anchor_tags: subcategories).each do |path|
-      visit_path path
-    end
-  end
-end
-
-def random_path_selection(opts={})
-  size = opts[:size] || 3
-  anchor_tags = opts[:anchor_tags] || []
-  anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(size)
 end
