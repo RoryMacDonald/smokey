@@ -3,8 +3,6 @@ Feature: Licensing
   @normal @notintegration
   Scenario: check licensing app is present
     Given I am testing "licensing"
-      And I am testing through the full stack
-      And I force a varnish cache miss
     Then I should be able to visit:
       | Path                                                              |
       | /apply-for-a-licence/test-licence/westminster/apply-1             |
@@ -15,8 +13,6 @@ Feature: Licensing
   Scenario: Loading a pdf in a reasonable amount of time
     Given I am testing "licensing"
       And I am benchmarking
-      And I am testing through the full stack
-      And I force a varnish cache miss
     When I request "/apply-for-a-licence/forms/bury/test-licence/9999-7-1,0-1"
     Then the elapsed time should be less than 10 seconds
 

@@ -6,16 +6,6 @@ Given /^I am testing "(.*)"/ do |host|
   end
 end
 
-Given /^I am testing through the full stack$/ do
-  @host = ENV["GOVUK_WEBSITE_ROOT"]
-  @bypass_varnish = false
-  @authenticated = true
-end
-
-Given /^I force a varnish cache miss$/ do
-  @bypass_varnish = true
-end
-
 Given /^I am an authenticated API client$/ do
   @authenticated_as_client = true
 end

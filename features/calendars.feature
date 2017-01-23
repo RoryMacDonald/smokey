@@ -2,8 +2,6 @@ Feature: Calendars
 
   @normal
   Scenario: check calendars loads
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be able to visit:
       | Path                       |
       | /when-do-the-clocks-change |
@@ -11,7 +9,6 @@ Feature: Calendars
 
   @normal
   Scenario: check alternative formats are available
-    Given I am testing through the full stack
     Then I should be able to visit:
       | Path                            |
       | /when-do-the-clocks-change/united-kingdom.json |

@@ -1,9 +1,5 @@
 Feature: Frontend
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   @normal
   Scenario: check robots.txt
     When I request "/robots.txt"

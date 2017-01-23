@@ -1,10 +1,6 @@
 Feature: Finder Frontend
   This are pages that have been migrated to a finder instead of index pages.
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   @normal
   Scenario: check people page loads
     When I visit "/government/people"

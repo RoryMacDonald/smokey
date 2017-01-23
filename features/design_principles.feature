@@ -1,9 +1,5 @@
 Feature: Design Principles
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   @normal
   Scenario: check Design Principles
     When I visit "/design-principles"
