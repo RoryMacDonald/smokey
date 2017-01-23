@@ -64,15 +64,6 @@ When /^I request "(.*)" from Bouncer directly$/ do |url|
   @response = try_get_request(bouncer_url, host_header: request_host)
 end
 
-def should_visit(path)
-  @response = get_request("#{@host}#{path}", default_request_options)
-  @response.code.should == 200
-end
-
-def should_see(text)
-  expect(@response.body).to have_content(text)
-end
-
 Then /^I should be able to visit:$/ do |table|
   table.hashes.each do |row|
     visit_path row['Path']
