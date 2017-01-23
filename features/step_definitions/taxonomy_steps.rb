@@ -18,3 +18,9 @@ def random_path_selection(opts={})
   anchor_tags = opts[:anchor_tags] || []
   anchor_tags.map { |anchor| anchor.attributes["href"].value }.sample(1)
 end
+
+When /^I click on the section "(.*?)"$/ do |section_name|
+  link_href = Nokogiri::HTML.parse(page.body).at_xpath("//h3[text()='#{section_name}']/../@href")
+  link_href.should_not == nil
+  step "I visit \"#{link_href.value}\""
+end
