@@ -41,7 +41,7 @@ Feature: Frontend
     When I visit "/busking-licence"
     Then I should see "Busking licence"
      And I should see an input field for postcode
-    When I try to post to "/busking-licence" with "postcode=E20+2ST"
+    When I input "E20 2ST" as my postcode
     Then I should get a 200 status code
      And I should see "Busking licence"
 
@@ -49,14 +49,14 @@ Feature: Frontend
   Scenario: check local transactions load
     When I visit "/pay-council-tax"
     Then I should see "Pay your Council Tax"
-    When I try to post to "/pay-council-tax" with "postcode=WC2B+6SE"
+    When I input "WC2B 6SE" as my postcode
     Then I should see "Camden"
 
   @normal
   Scenario: check find my nearest returns results
     When I visit "/ukonline-centre-internet-access-computer-training"
     And I should see "UK online centres"
-    When I try to post to "/ukonline-centre-internet-access-computer-training" with "postcode=WC2B+6NH"
+    When I input "WC2B 6NH" as my postcode
     Then I should get a 200 status code
     And I should see "Holborn Library"
 
