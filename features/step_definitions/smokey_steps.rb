@@ -52,7 +52,7 @@ When /^I visit "(.*)" (\d+) times$/ do |path, count|
 end
 
 When /^I visit a non-existent page$/ do
-  @response = get_request("#{@host}/404", default_request_options.merge(return_response_on_error: true))
+  visit_path "/404"
 end
 
 Then /^I should be able to visit:$/ do |table|
@@ -77,15 +77,7 @@ Then /^I should get a (\d+) status code$/ do |status|
 end
 
 Then /^I should get a "(.*)" header of "(.*)"$/ do |header_name, header_value|
-  header_as_symbol = header_name.gsub('-', '_').downcase.to_sym
-
-  if @response.respond_to? :headers
-    @response.headers[header_as_symbol].should == header_value
-  elsif @response[header_name]
-    @response[header_name].should == header_value
-  else
-    raise "Couldn't find header '#{header_name}' in response"
-  end
+  expect(page.response_headers[header_name]).to eql(header_value)
 end
 
 Then /I should get a content length of "(\d+)"/ do |length|
