@@ -32,6 +32,10 @@ When /^I visit "(.*)" without authentication$/ do |path_or_url|
   visit_without_auth path_or_url
 end
 
+When /^I visit "(.*)" without cachebust$/ do |path_or_url|
+  visit path_or_url
+end
+
 When /^I try to visit "(.*)"$/ do |path_or_url|
   visit_path path_or_url
 end
@@ -97,7 +101,7 @@ Then /^I should see "(.*)"$/ do |content|
 end
 
 Then /^I should be at a location path of "(.*)"$/ do |location_path|
-  @response['location'].should == "#{@host}#{location_path}"
+  expect(page.current_path).to eql(location_path)
 end
 
 When /^I click "(.*?)"$/ do |link_text|

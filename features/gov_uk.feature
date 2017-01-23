@@ -2,9 +2,8 @@ Feature: Core GOV.UK behaviour
 
   @high
   Scenario: Paths with a trailing slash are redirected
-    When I visit "https://www.gov.uk/browse/benefits/" without following redirects
-    Then I should get a 301 status code
-    And I should get a "Location" header of "/browse/benefits"
+    When I visit "https://www.gov.uk/browse/benefits/" without cachebust
+    Then I should be at a location path of "/browse/benefits"
 
   @normal
   Scenario: Crown logo links to GOV.UK homepage
@@ -13,9 +12,8 @@ Feature: Core GOV.UK behaviour
 
   @normal
   Scenario: entirely upper case slugs redirect to lowercase
-    When I visit "/GOVERNMENT/PUBLICATIONS" without following redirects
-    Then I should get a 301 status code
-    And I should be at a location path of "/government/publications"
+    When I visit "/GOVERNMENT/PUBLICATIONS" without cachebust
+    Then I should be at a location path of "/government/publications"
 
   @normal
   Scenario: partially upper case slugs do not redirect
