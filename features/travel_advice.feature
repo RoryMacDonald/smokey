@@ -1,9 +1,5 @@
 Feature: Travel Advice
 
-  Background:
-    Given I am testing through the full stack
-    And I force a varnish cache miss
-
   @normal
   Scenario: check index loads
     When I visit "/foreign-travel-advice"

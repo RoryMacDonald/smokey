@@ -11,14 +11,12 @@ Feature: A/B Testing
   @low @notintegration @notstaging
   Scenario: check we end up in all buckets
     Given there is an AB test setup
-    And I am testing through the full stack
     When multiple new users visit "/help/ab-testing"
     Then we have shown them all versions of the AB test
 
   @withanalitics @low @notintegration @notstaging
   Scenario: check that an A/B test works
     Given there is an AB test setup
-    And I am testing through the full stack
     And I do not have any AB testing cookies set
     When I visit "/help/ab-testing"
     Then I am assigned to a test bucket

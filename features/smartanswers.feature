@@ -2,8 +2,6 @@ Feature: Smart Answers
 
   @normal
   Scenario: check smart answers load
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be able to visit:
       | Path                                        |
       | /additional-commodity-code                  |
@@ -18,8 +16,6 @@ Feature: Smart Answers
 
   @normal
   Scenario: step through a smart answer
-    Given I am testing through the full stack
-    And I force a varnish cache miss
     Then I should be able to visit:
     | Path                                        |
     | /vat-payment-deadlines                      |
