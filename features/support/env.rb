@@ -33,11 +33,3 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 Capybara.default_driver = :poltergeist
-
-Before do
-  page.driver.add_headers('User-Agent' => 'Smokey')
-end
-
-Before('@withanalytics') do |scenario, block|
-  page.driver.browser.url_blacklist = BLACKLISTED_URLS - [GOOGLE_ANALYTICS_URL]
-end
